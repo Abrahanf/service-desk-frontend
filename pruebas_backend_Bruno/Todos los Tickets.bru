@@ -1,17 +1,21 @@
 meta {
-  name: ALL Colaboradores
+  name: Todos los Tickets
   type: http
-  seq: 1
+  seq: 8
 }
 
 get {
-  url: http://localhost:8080/api/colaboradores
+  url: http://localhost:8080/api/tickets
   body: none
-  auth: basic
+  auth: bearer
 }
 
 headers {
   Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYnJhaGFuLnlwYW5hcXVlQGJhbmNvLmNvbSIsImlhdCI6MTc2MjU4NjM2NiwiZXhwIjoxNzYyNTg5OTY2fQ.X40kERHl2RLtz6PNK8gF4VAFO51G1G6YgVV_FffaBBM
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYnJhaGFuLnlwYW5hcXVlQGJhbmNvLmNvbSIsImlhdCI6MTc2MjU4NjM2NiwiZXhwIjoxNzYyNTg5OTY2fQ.X40kERHl2RLtz6PNK8gF4VAFO51G1G6YgVV_FffaBBM
 }
 
 settings {

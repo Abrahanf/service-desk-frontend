@@ -167,6 +167,118 @@ export const colaboradorService = {
       console.error("Error al eliminar colaboradores:", error);
       throw error; // Lanza el error para que el componente lo maneje
     }
+  },
+
+  get: async function obtenerTickets(token) {
+  const response = await fetch("/tickets", {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  });
+  return res.json();
+}
+
+};
+
+export const ticketService = {
+  // Obtener todos los tickets
+  getAll: async () => {
+    try {
+      const response = await api.get('/tickets');
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // Obtener tickets de un usuario
+  getByUser: async (userId) => {
+    try {
+      const response = await api.get(`/tickets/mis-tickets/${userId}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // Detalle de ticket
+  getById: async (id) => {
+    try {
+      const response = await api.get(`/tickets/${id}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // Crear ticket
+  create: async (ticket) => {
+    try {
+      const response = await api.post('/tickets', ticket);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // Actualizar estado
+  updateStatus: async (id, estado) => {
+    try {
+      const response = await api.put(`/tickets/${id}/estado`, { estado });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // Asignar agente
+  assignAgent: async (id, agenteId) => {
+    try {
+      const response = await api.put(`/tickets/${id}/asignar`, { agenteId });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // Ver comentarios de ticket
+  getComentarios: async (id) => {
+    try {
+      const response = await api.get(`/tickets/${id}/comentarios`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // Crear comentario
+  addComentario: async (comentario) => {
+    try {
+      const response = await api.post('/tickets/comentarios', comentario);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // Calificar atención
+  enviarEncuesta: async (encuesta) => {
+    try {
+      const response = await api.post('/tickets/encuesta', encuesta);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // Estadísticas
+  getStats: async () => {
+    try {
+      const response = await api.get('/tickets/stats');
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
   }
 };
 
