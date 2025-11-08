@@ -1,0 +1,22 @@
+meta {
+  name: RECUPERAR contraseña
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:8080/api/colaboradores/forgot-password
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "email": "juan.perez@banco.com"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

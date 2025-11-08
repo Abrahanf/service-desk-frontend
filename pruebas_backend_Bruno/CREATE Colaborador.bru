@@ -1,0 +1,33 @@
+meta {
+  name: CREATE Colaborador
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:8080/api/colaboradores
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "nombre": "griscobia2",
+      "apellido": "Péhez",
+      "area": "Tecnofdgfdía",
+      "cargo": "Administrador de Sistemas",
+      "email": "juan.perez@banco.com",
+      "telefono": "987654321",
+      "contraseña": "pass123",
+      "rol": {
+        "id": 2,
+        "nombre": "ADMINISTRADOR_TI",
+        "descripcion": "Administrador del sistema con todos los permisos"
+      }
+    }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
