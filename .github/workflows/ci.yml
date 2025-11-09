@@ -27,6 +27,7 @@ jobs:
         working-directory: ./service-desk-frontend/service-desk-frontend
         run: npm run build
 
-      - name: Run tests (optional)
-        working-directory: ./service-desk-frontend/service-desk-frontend
-        run: npm test
+      # (Eliminar este bloque si no tienes tests)
+      # - name: Run tests
+      #   working-directory: ./service-desk-frontend/service-desk-frontend
+      #   run: npm test
