@@ -1,28 +1,32 @@
-name: CI - Build and Test
+name: CI - Frontend React
 
 on:
   push:
-    branches: [ main, master ]
+    branches:
+      - main
   pull_request:
-    branches: [ main, master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🧠 Clonar repositorio
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: 🟢 Configurar Node.js
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: 📦 Instalar dependencias
-        run: |
-          npm install
+      - name: Install dependencies
+        working-directory: ./service-desk-frontend/service-desk-frontend
+        run: npm install
 
-      - name: 🧪 Compilar y verificar
-        run: |
-          npm run build || npm run dev -- --dry
+      - name: Build project
+        working-directory: ./service-desk-frontend/service-desk-frontend
+        run: npm run build
+
+      - name: Run tests (optional)
+        working-directory: ./service-desk-frontend/service-desk-frontend
+        run: npm test
