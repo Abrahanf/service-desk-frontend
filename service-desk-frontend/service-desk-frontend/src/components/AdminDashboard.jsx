@@ -131,7 +131,7 @@ const AdminDashboard = () => {
                 🚨 Alertas y Monitoreo SLA
               </h3>
               <span className="px-3 py-1 bg-red-100 text-red-700 text-sm font-medium rounded-full">
-                2 críticos
+                2 críticos3
               </span>
             </div>
             <div className="space-y-3">
