@@ -169,17 +169,20 @@ export const colaboradorService = {
     }
   },
 
-  get: async function obtenerTickets(token) {
-  const response = await fetch("/tickets", {
-    headers: {
-      "Authorization": `Bearer ${token}`
-    }
-  });
-  return res.json();
-}
+//  get: async function obtenerTickets(token) {
+//  const response = await fetch("/tickets", {
+//    headers: {
+//      "Authorization": `Bearer ${token}`
+//    }
+//  });
+//  return res.json();
+//}
 
 };
 
+// ===================================
+// Servicios de Tickets
+// ===================================
 export const ticketService = {
   // Obtener todos los tickets
   getAll: async () => {
@@ -187,6 +190,7 @@ export const ticketService = {
       const response = await api.get('/tickets');
       return response.data;
     } catch (error) {
+      console.error('Error al obtener tickets:', error);
       throw error;
     }
   },
@@ -194,9 +198,10 @@ export const ticketService = {
   // Obtener tickets de un usuario
   getByUser: async (userId) => {
     try {
-      const response = await api.get(`/tickets/mis-tickets/${userId}`);
+      const response = await api.get(`/tickets/mis-tickets/${userId}`); // ← CORREGIDO
       return response.data;
     } catch (error) {
+      console.error('Error al obtener tickets del usuario:', error);
       throw error;
     }
   },
@@ -204,9 +209,10 @@ export const ticketService = {
   // Detalle de ticket
   getById: async (id) => {
     try {
-      const response = await api.get(`/tickets/${id}`);
+      const response = await api.get(`/tickets/${id}`); // ← CORREGIDO
       return response.data;
     } catch (error) {
+      console.error('Error al obtener ticket:', error);
       throw error;
     }
   },
@@ -217,6 +223,7 @@ export const ticketService = {
       const response = await api.post('/tickets', ticket);
       return response.data;
     } catch (error) {
+      console.error('Error al crear ticket:', error);
       throw error;
     }
   },
@@ -224,9 +231,10 @@ export const ticketService = {
   // Actualizar estado
   updateStatus: async (id, estado) => {
     try {
-      const response = await api.put(`/tickets/${id}/estado`, { estado });
+      const response = await api.put(`/tickets/${id}/estado`, { estado }); // ← CORREGIDO
       return response.data;
     } catch (error) {
+      console.error('Error al actualizar estado:', error);
       throw error;
     }
   },
@@ -234,9 +242,10 @@ export const ticketService = {
   // Asignar agente
   assignAgent: async (id, agenteId) => {
     try {
-      const response = await api.put(`/tickets/${id}/asignar`, { agenteId });
+      const response = await api.put(`/tickets/${id}/asignar`, { idAgente: agenteId }); // ← CORREGIDO
       return response.data;
     } catch (error) {
+      console.error('Error al asignar agente:', error);
       throw error;
     }
   },
@@ -244,9 +253,10 @@ export const ticketService = {
   // Ver comentarios de ticket
   getComentarios: async (id) => {
     try {
-      const response = await api.get(`/tickets/${id}/comentarios`);
+      const response = await api.get(`/tickets/${id}/comentarios`); // ← CORREGIDO
       return response.data;
     } catch (error) {
+      console.error('Error al obtener comentarios:', error);
       throw error;
     }
   },
@@ -257,6 +267,7 @@ export const ticketService = {
       const response = await api.post('/tickets/comentarios', comentario);
       return response.data;
     } catch (error) {
+      console.error('Error al agregar comentario:', error);
       throw error;
     }
   },
@@ -267,6 +278,7 @@ export const ticketService = {
       const response = await api.post('/tickets/encuesta', encuesta);
       return response.data;
     } catch (error) {
+      console.error('Error al enviar encuesta:', error);
       throw error;
     }
   },
@@ -277,6 +289,7 @@ export const ticketService = {
       const response = await api.get('/tickets/stats');
       return response.data;
     } catch (error) {
+      console.error('Error al obtener estadísticas:', error);
       throw error;
     }
   }

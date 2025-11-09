@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { authService } from '../services/api';
+import { authService, ticketService } from '../services/api';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
