@@ -1,33 +1,46 @@
-name: CI - Frontend React
+name: CI - Frontend y Backend
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
+    branches: [ main ]
 
 jobs:
-  build:
+  frontend:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: ./service-desk-frontend/service-desk-frontend
     steps:
-      - name: Checkout repository
+      - name: 🧩 Checkout del repositorio
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: 📦 Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: '20'
 
-      - name: Install dependencies
-        working-directory: ./service-desk-frontend/service-desk-frontend
+      - name: 📥 Instalar dependencias del frontend
         run: npm install
 
-      - name: Build project
-        working-directory: ./service-desk-frontend/service-desk-frontend
+      - name: 🧱 Compilar frontend
         run: npm run build
 
-      # (Eliminar este bloque si no tienes tests)
-      # - name: Run tests
-      #   working-directory: ./service-desk-frontend/service-desk-frontend
-      #   run: npm test
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./Service Desk Inteligente
+    steps:
+      - name: 🧩 Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: ☕ Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: 🧱 Compilar backend con Maven
+        run: mvn clean package -DskipTests
